@@ -202,7 +202,6 @@ class Instructor extends Lambdasian {
       this.specialty = childAttrs.specialty;
       this.favLanguage = childAttrs.favLanguage;
       this.catchPhrase = childAttrs.catchPhrase;
-      this.subject =childAttrs.subject;
   }
   demo(subject){
       return `Today we are learning about ${subject}`;
@@ -242,9 +241,41 @@ console.log(Simon.grade(Ming, 'User-Interface-II'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+// class Student {
    
+// }
+
+class Student extends Lambdasian {
+  constructor(childAttrs) {
+      super(childAttrs);
+      this.previousBackground = childAttrs.previousBackground;
+      this.className = childAttrs.className;
+      this.favSubjects = childAttrs.favSubjects;
+  }
+  listSubjects(){
+      return this.favSubjects;
+  }
+  PRAssignment(subject){
+      return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject){
+      return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
+
+const William = new Student({
+  age: 35,
+  name: 'William',
+  location: 'California',
+  previousBackground: 'Driver',
+  className: 'CS132',
+  favSubjects: ['HTML', 'CSS', 'JS'],
+});
+console.log(William.name, William.age, William.location);
+console.log(William.previousBackground, William.className, William.favSubjects);
+console.log(William.listSubjects() );
+console.log(William.PRAssignment("Responsive-Design") );
+console.log(William.sprintChallenge("Responsive-Design") );
 
 /*
   TASK 6
