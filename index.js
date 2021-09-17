@@ -41,9 +41,6 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-// class Person {
-  
-// }
 
 class Person {
   constructor(name, age){
@@ -98,9 +95,7 @@ class Person {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-// class Car {
-  
-// }
+
 
 class Car{
   constructor(model, milesPerGallon) {
@@ -155,9 +150,7 @@ console.log(Prius.tank);
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-// class Lambdasian {
-  
-// }
+
 class Lambdasian {
   constructor(attributes) {
   this.name = attributes.name;
@@ -192,9 +185,7 @@ console.log(Ming.speak());
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-// class Instructor {
 
-// }
 
 class Instructor extends Lambdasian {
   constructor(childAttrs) {
@@ -241,9 +232,6 @@ console.log(Simon.grade(Ming, 'User-Interface-II'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-// class Student {
-   
-// }
 
 class Student extends Lambdasian {
   constructor(childAttrs) {
@@ -290,9 +278,40 @@ console.log(William.sprintChallenge("Responsive-Design") );
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-   
+
+class ProjectManager extends Instructor {
+  constructor(childAttrs) {
+      super(childAttrs);
+      this.gradClassName = childAttrs.gradClassName;
+      this.favInstructor = childAttrs.favInstructor;
+  }
+  standUp(channel){
+      return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject){
+      return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
+const Wendy = new ProjectManager({
+  age: 39,
+  name: 'Wendy',
+  location: 'California',
+  specialty: 'redux',
+  favLanguage: 'JavaScript',
+  catchPhrase: `Don't forget the homies`,
+  gradClassName: 'CS1',
+  favInstructor:  'Sean',
+});
+console.log(Wendy.name, Wendy.age, Wendy.location);
+console.log(Wendy.specialty, Wendy.favLanguage, Wendy.catchPhrase);
+console.log(Wendy.gradClassName, Wendy.favInstructor);
+console.log(Wendy.standUp('CS1-help'));
+// let Robert = {
+//     name: 'Robert'
+// };
+console.log(Wendy.debugsCode(Robert, 'User-Interface-II'));
+
+
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
