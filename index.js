@@ -41,9 +41,48 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-class Person {
+// class Person {
   
+// }
+
+class Person {
+  constructor(name, age){
+      this.name = name;
+      this.age = age;
+      this.stomach = [];
+  }
+  eat(someFood) {
+    if(this.stomach.length < 10){this.stomach.push(someFood);}
+  }
+  poop() {
+      this.stomach = [];
+  }
+  toString() {
+      return `${this.name}, ${this.age}`;
+  }
 }
+  var Mingjun = new Person("Mingjun", 40);
+  console.log(Mingjun.name);
+  console.log(Mingjun.age);
+  console.log( Mingjun.toString());
+  console.log(Mingjun.stomach);
+  Mingjun.eat("1_egg");
+  Mingjun.eat("2_egg");
+  Mingjun.eat("3_egg");
+  Mingjun.eat("4_egg");
+  Mingjun.eat("5_fish");
+  Mingjun.eat("6_egg");
+  Mingjun.eat("7_egg");
+  Mingjun.eat("8_egg");
+  Mingjun.eat("9_egg");
+  Mingjun.eat("10_fish");
+  Mingjun.eat("11_fish");
+  Mingjun.eat("12_fish");
+  console.log(Mingjun.stomach);
+  console.log(Mingjun.stomach.length);
+  Mingjun.poop();
+  console.log(Mingjun.stomach);
+  console.log(Mingjun.stomach.length);
 
 /*
   TASK 2
@@ -59,9 +98,50 @@ class Person {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {
+// class Car {
   
-}
+// }
+
+class Car{
+  constructor(model, milesPerGallon) {
+      this.model = model;
+      this.milesPerGallon = milesPerGallon;
+      this.tank = 0;
+      this.odometer = 0;
+  }
+  fill(gallons) {
+      if(this.tank===0){
+          this.tank = gallons;
+      }else {
+          this.tank = this.tank  + gallons;
+      }
+  }
+  drive(distance) {
+      if(distance>this.tank*this.milesPerGallon){
+          this.odometer = this.tank*this.milesPerGallon;
+          this.tank = 0;
+          return `I ran out of fuel at ${this.odometer} miles!`;
+      }
+      this.odometer = distance;
+      this.tank = this.tank - (distance/this.milesPerGallon);
+  }
+
+} 
+let Prius = new Car("Prius", 40);
+console.log(Prius.model);
+console.log(Prius.milesPerGallon);
+Prius.fill(10);
+console.log(Prius.tank);
+console.log(Prius.drive(420));
+console.log(Prius.odometer);
+console.log(Prius.tank);
+Prius.fill(10);
+console.log(Prius.tank);
+console.log(Prius.drive(320));
+console.log(Prius.odometer);
+console.log(Prius.tank);
+Prius.fill(5);
+console.log(Prius.tank);
 
 /*
   TASK 3
@@ -75,9 +155,28 @@ class Car {
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian {
+// class Lambdasian {
   
+// }
+class Lambdasian {
+  constructor(attributes) {
+  this.name = attributes.name;
+  this.age = attributes.age;
+  this.location = attributes.location
 }
+speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+}
+}
+const Ming = new Lambdasian({
+name: 'Ming',
+age: 40,
+location: 'California'
+});
+console.log(Ming.name, Ming.age, Ming.location);
+console.log(Ming.speak());
+
+
 
 /*
   TASK 4
@@ -93,9 +192,41 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+// class Instructor {
 
+// }
+
+class Instructor extends Lambdasian {
+  constructor(childAttrs) {
+      super(childAttrs);
+      this.specialty = childAttrs.specialty;
+      this.favLanguage = childAttrs.favLanguage;
+      this.catchPhrase = childAttrs.catchPhrase;
+      this.subject =childAttrs.subject;
+  }
+  demo(subject){
+      return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject){
+      return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
+const Simon = new Instructor({
+  age: 38,
+  name: 'Simon',
+  location: 'California',
+  specialty: 'redux',
+  favLanguage: 'JavaScript',
+  catchPhrase: `Don't forget the homies`,
+});
+console.log(Simon.name, Simon.age, Simon.location);
+
+console.log(Simon.demo('User-Interface-II'));
+let Robert = {
+    name: 'Robert'
+};
+console.log(Simon.grade(Ming, 'User-Interface-II'));
+
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
